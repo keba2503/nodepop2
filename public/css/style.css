@@ -1,0 +1,14 @@
+@media (min-width: 992px) {
+    #mainNav {
+      background-color: black;
+    }
+  }
+
+  .formulario {
+    margin-bottom:20em;   
+    margin-top: 100px;
+    padding-left: 5em;
+    padding-right: 5em;
+  }
+
+ 

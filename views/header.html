@@ -48,12 +48,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/services"><%=__('Services') %></a>
-          </li>
-          <li>
-          <a class="nav-link js-scroll-trigger" href="#contact"><%=__('Contact') %></a>
-          </li>
+          
           <% if (!session.User) { %>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="/login"><%= __('Login') %></a>

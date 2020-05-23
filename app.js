@@ -25,12 +25,12 @@ const mongooseConnection = require('./lib/connectMongoose');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 app.engine('html', require('ejs').__express);
-
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 //conectar con i18n
 const i18n = require('./lib/i18nConfigure')();
@@ -38,8 +38,14 @@ app.use(i18n.init);
 
 
 
+
 //Routes API
-app.use('/api/anuncios', require('./routes/api/anuncios'));
+const login = require('./routes/login');
+const jwtAuth = require('./lib/jwtAuth');
+
+app.use('/api/anuncios',jwtAuth(), require('./routes/api/anuncios'));
+app.use('/api/loginjwt', login.postJWT);
+
 
 //Sesion
 app.use(session({
@@ -58,35 +64,32 @@ app.use(session({
 }));
 
 
+app.locals.title = 'NodePop';
+
+//routes API
+
 
 // routes Web
 const sessionAuth = require('./lib/session');
-const login = require('./routes/login');
-const private = require('./routes/private');
+const basicAuth = require('./lib/basicAuth');
 
 app.use((req, res, next) => {
   res.locals.session = req.session;
   next();
 });
 
-
-
 app.use('/', indexRouter);
+app.use('/web/', sessionAuth(['admin']), require('./routes/web'));
+app.use('/services',  basicAuth(), require('./routes/services'));
 app.use('/users', usersRouter);
-app.locals.title = 'NodePop';
-app.use('/services',  require('./routes/services'));
 app.use('/change-locale', require('./routes/change-locale'));
+app.use('/api/', require('./routes/api/api-docs'));
 
 //login
 app.get('/login', login.index);
 app.post('/login', login.post);
-app.get('/private', sessionAuth(['admin']) ,private.index);
 //logout
 app.get('/logout',    login.logout);
-
-
-
-
 
 
 
@@ -97,13 +100,31 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
+  if (err.array) { // error de validación
+    err.status = 422;
+    const errInfo = err.array({ onlyFirstError: true })[0];
+    err.message = isAPIRequest(req) ?
+      { message: 'Not valid', errors: err.mapped()}
+      : `El parámetro ${errInfo.param} ${errInfo.msg}`;
+  }
+
+  res.status(err.status || 500);
+
+  if (isAPIRequest(req)) {
+    res.json({ error: err.message });
+    return;
+  }
+
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
-  res.status(err.status || 500);
   res.render('error');
 });
+
+function isAPIRequest(req) {
+  return req.originalUrl.startsWith('/api/');
+}
 
 module.exports = app;

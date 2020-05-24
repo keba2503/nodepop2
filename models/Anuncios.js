@@ -5,10 +5,10 @@ const mongoose = require('mongoose');
 //schematic creation
 //https://mongoosejs.com/docs/schematypes.html
 const anuncioSchema = mongoose.Schema({
-    name: { type: String },
-    price: { type: Number },
-    sale: { type: Boolean },
-    tags: {type: [String]},
+    name: { type: String, index: true },
+    price: { type: Number, index: true},
+    sale: { type: Boolean, index: true },
+    tags: { type: [String], index: true },
     imagen:  String,
 });
 

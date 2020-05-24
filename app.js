@@ -80,10 +80,8 @@ app.use((req, res, next) => {
 
 app.use('/', indexRouter);
 app.use('/web/', sessionAuth(['admin']), require('./routes/web'));
-app.use('/services',  basicAuth(), require('./routes/services'));
-app.use('/users', usersRouter);
 app.use('/change-locale', require('./routes/change-locale'));
-app.use('/api/', require('./routes/api/api-docs'));
+app.use('/api/', basicAuth(), require('./routes/api/api-docs'));
 
 //login
 app.get('/login', login.index);

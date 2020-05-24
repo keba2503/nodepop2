@@ -29,7 +29,7 @@
 
 ## Authentication
 
-POST /api/loginJWT
+POST /api/anuncios/loginJWT
 {
   email: string,
   password: string
@@ -37,7 +37,7 @@ POST /api/loginJWT
 
 returns: { token: string }
 
-### List of agents
+### List of auncios
 
 GET /api/anuncios
 Header: Authorization: token

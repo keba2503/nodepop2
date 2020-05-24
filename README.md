@@ -22,20 +22,20 @@
 
 ## Api Reference
 
-    http://localhost:3000/   (Readme)
-    http://localhost:3000/api (Documentacion)
-    http://localhost:3000/api/anuncios (Lista de anuncios json)
-    http://localhost:3000/web (Demo de lista de anuncios)
+    https://localhost:3000/   (Readme)
+    https://localhost:3000/api (Documentacion)
+    https://localhost:3000/api/anuncios (Lista de anuncios json)
+    https://localhost:3000/web (Demo de lista de anuncios)
 
 ## Authentication
 
-POST /api/anuncios/loginJWT
-{
-  email: string,
-  password: string
-}
+    POST /api/anuncios/loginJWT
+    {
+      email: string,
+      password: string
+    }
 
-returns: { token: string }
+    returns: { token: string }
 
 ### List of auncios
 

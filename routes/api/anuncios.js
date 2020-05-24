@@ -2,6 +2,8 @@
 
 const express = require('express');
 const router = express.Router();
+// const multer = require('multer');
+// const cote = require('cote');
 const Anuncios = require('../../models/Anuncios');
 
 //Document con Swagger

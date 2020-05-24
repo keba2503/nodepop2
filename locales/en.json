@@ -1,17 +1,14 @@
 {
-	"Welcome to": "Welcome to",
-	"Values": "Values",
-	"hola": "hola",
-	"Services": "Services",
-	"Text of services": "Text of services",
-	"Features": "Features",
-	"Contact": "Contact",
-	"Invalid credentials": "Invalid credentials",
-	"Private": "Private",
-	"Private content": "Private content",
-	"Login": "Login",
 	"Logout": "Logout",
-	"Private Content": "Private Content",
-	"Privado": "Private",
-	"Contenido privado": "Contenido privado"
+	"Email address": "Email address",
+	"Password": "Password",
+	"Submit": "Submit",
+	"Invalid credentials": "Invalid credentials",
+	"Well never share your email with anyone else.": "Well never share your email with anyone else.",
+	"Login": "Login",
+	"Back": "Back",
+	"Go somewhere": "Go somewhere",
+	"Choose your language: ": "Choose your language: ",
+	"Price:": "Price:",
+	"Tags:": "Tags:"
 }

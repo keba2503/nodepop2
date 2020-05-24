@@ -1,6 +1,6 @@
 # Nodepop
-# Api Ads buy and sell
 
+## Api Ads buy and sell
 
 ### Install dependencies
 
@@ -12,24 +12,38 @@
 
 ## Start
 
-### Aplication:
+### Aplication
 
     npm start
 
-### Development:
+### Development
 
     npm run dev
 
+## Api Reference
 
-
- ## Api Reference
     http://localhost:3000/   (Readme)
     http://localhost:3000/api (Documentacion)
     http://localhost:3000/api/anuncios (Lista de anuncios json)
     http://localhost:3000/web (Demo de lista de anuncios)
 
+## Authentication
 
-### List "Anuncios"
+POST /api/loginJWT
+{
+  email: string,
+  password: string
+}
+
+returns: { token: string }
+
+### List of agents
+
+GET /api/anuncios
+Header: Authorization: token
+
+## List "Anuncios"
+
     GET: 
      return json with list for "Anuncios"./api/anuncios
      return json with list for "Anuncios".
@@ -46,10 +60,10 @@
      . sale: { type: Boolean },
      . tags: {type: [String]}
 
-### GET: ID
+### GET ID
+
       /api/anuncios/id
       return "Anuncio" for ID.
-
 
 ### GET: /api/anuncios/tags
 
@@ -64,7 +78,7 @@
     ]
      } 
 
-## json Example:
+## json Example
 
      [
      {

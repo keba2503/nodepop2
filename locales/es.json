@@ -1,17 +1,14 @@
 {
-	"Welcome to": "Bienvenido a",
-	"Values": "Valores",
-	"hola": "hola",
-	"Services": "Servicios",
-	"Text of services": "Texto de servicios",
-	"Features": "Características",
-	"Contact": "Contacto",
-	"Invalid credentials": "Invalid credentials",
-	"Private": "Privado",
-	"Private content": "Contenido privado",
-	"Login": "Inicio de Sesion",
 	"Logout": "Cerrar Sesion",
-	"Private Content": "Contenido privado",
-	"Privado": "Privado",
-	"Contenido privado": "Contenido privado"
+	"Email address": "Correo Electronico",
+	"Password": "Clave",
+	"Submit": "Entrar",
+	"Invalid credentials": "Credenciales Invalidas",
+	"Well never share your email with anyone else.": "Nunca compartiremos su correo electrónico con nadie más.",
+	"Login": "Iniciar sesion",
+	"Back": "Volver",
+	"Go somewhere": "Ir a",
+	"Choose your language: ": "Choose your language: ",
+	"Price:": "Precio:",
+	"Tags:": "Etiqueta:"
 }

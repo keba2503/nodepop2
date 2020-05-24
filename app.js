@@ -16,7 +16,7 @@ const mongooseConnection = require('./lib/connectMongoose');
 
 
 
-//prueba i18n
+// prueba i18n
 // i18n.setLocale('es');
 // console.log(i18n.__('Welcome to'));
 

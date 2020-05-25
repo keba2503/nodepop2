@@ -12,6 +12,9 @@ router.get('/', async (req, res, next) => {
     const price = req.query.price;
     const limit = parseInt(req.query.limit || 10);
     const skip = parseInt(req.query.skip);
+    const includeTotal = true
+
+    
 
     const filter = {};
 
@@ -31,7 +34,7 @@ router.get('/', async (req, res, next) => {
         filter.sale = sale;
       }
     
-      const anuncio = await Anuncio.list(filter, limit, skip);
+      const anuncio = await Anuncio.list(filter, limit, skip, includeTotal);
       
    
       res.render('anuncios', {anuncio});

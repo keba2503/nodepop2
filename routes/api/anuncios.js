@@ -2,7 +2,8 @@
 
 const express = require('express');
 const router = express.Router();
-// const multer = require('multer');
+const multer = require('multer');
+const upload = multer({ dest: 'public/img'});
 // const cote = require('cote');
 const Anuncios = require('../../models/Anuncios');
 
@@ -31,6 +32,7 @@ router.get('/', async (req, res, next) => {
         const price = req.query.price;
         const tags  = req.query.tags
         const sale = req.query.sale;
+        const includeTotal = req.query.includeTotal === 'true'
         const limit = parseInt(req.query.limit) || 1000;
         const skip = parseInt(req.query.skip);
         const filter = {};
@@ -51,7 +53,7 @@ router.get('/', async (req, res, next) => {
           filter.sale = sale;
         }
 
-        const docs = await Anuncios.list(filter, limit, skip);
+        const docs = await Anuncios.list(filter, limit, skip,includeTotal);
         res.json(docs);
     } catch(err) {
         next(err);
@@ -93,15 +95,19 @@ router.get('/:id', async (req, res, next) => {
  */
 
 //POST
-router.post('/', async (req, res, next) => {
+router.post('/', upload.single('imagen'), async (req, res, next) => {
   try {
-    const anunciosData = req.body;
+    const anunciosData = new Anuncios(req.body)
+    await anunciosData.setFoto(req.file) 
+
+   
+
     console.log(req.body);
     //create
     const anuncios = new Anuncios(anunciosData);
     //save
     const anunciosSave = await anuncios.save();
-    res.status(201).json({ result: anunciosSave });
+    res.status(201).json({ ok: true, result: anunciosSave });
   } catch (err) {
     next(err);
   }

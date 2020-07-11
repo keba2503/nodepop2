@@ -26,7 +26,7 @@ const Anuncios = require('../../models/Anuncios');
  */
 
 
-router.get('/', async (req, res, next) => {
+router.get('/',  (req, res, next) => {
     try {
         const name = req.query.name;
         const price = req.query.price;
@@ -53,8 +53,10 @@ router.get('/', async (req, res, next) => {
           filter.sale = sale;
         }
 
-        const docs = await Anuncios.list(filter, limit, skip,includeTotal);
-        res.json(docs);
+        Anuncios.list(filter, limit, skip,includeTotal).then(anuncios =>{
+          res.json({success: true, result:anuncios})
+        })
+        
     } catch(err) {
         next(err);
     }
